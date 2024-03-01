@@ -10,7 +10,7 @@ We will use CloudFormation to deploy the HTTP API, Lambda Function and DynamoDB 
 ## Prerequisites
 
 - An active AWS account
-- An index.hmt, css, and JS file
+- An index.hmtl and css
 
  
 
@@ -111,23 +111,23 @@ Use the following code and save:
 
  
 
-Go to API Gateway section to check API created as part of CF stack. items-api is created 
+- Go to API Gateway section to check API created as part of CF stack. items-api is created 
 
-Need to copy Invoke URL to be configured in frontend config 
+- Need to copy Invoke URL to be configured in frontend config 
 
-Need to modify four things: Routes, Integrations, Stages, CORS and then Deploy 
+- Need to modify four things: Routes, Integrations, Stages, CORS and then Deploy 
 
-Click Stage on left navigation. Then Click Create 
+- Click Stage on left navigation. Then Click Create 
 
-New stage name "prod". Click Create at bottom 
+- New stage name "prod". Click Create at bottom 
 
-Go to Integrations 
+- Go to Integrations 
 
-Manage Integrations tab. A default integration exists but we click Create to create a new one 
+- Manage Integrations tab. A default integration exists but we click Create to create a new one 
 
-Specify integration type, AWS region and Lambda function. This Lambda function is also created as part of CF stack. Click Create at bottom 
-
-New integration is ready. Note integration ID 
+- Specify integration type, AWS region and Lambda function. This Lambda function is also created as part of CF stack. Click Create at bottom 
+ 
+- New integration is ready. Note integration ID 
 
 Now need to create 6 routes: 
  /Items (OPTIONS, GET, PUT) and /items/{id} (OPTIONS, DELETE, GET) 
