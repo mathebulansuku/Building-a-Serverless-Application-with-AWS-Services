@@ -1,4 +1,4 @@
-## SUMMARY 
+# Building A Serverless Application 
 
 In this project, we will be building a serverless web application using Amazon S3, Lambda, SQS, API Gateway, and DynamoDB. 
 
@@ -33,41 +33,42 @@ We will use CloudFormation to deploy the HTTP API, Lambda Function and DynamoDB 
 
  
 
-Go to CloudFormation main page 
+- Go to CloudFormation main page 
 
-Create CloudFormation stack 
+- Create CloudFormation stack 
 
-Choose upload template file 
+- Choose upload template file 
 
-Select YAML file from local drive 
+- Select YAML file from local drive 
 
-Optional - click View in Designer if want to see AWS stack in designer 
+- Optional - click View in Designer if want to see AWS stack in designer 
 
-Click Next 
+- Click Next 
 
-Acknowledge and click Create Stack 
+- Acknowledge and click Create Stack 
 
-Stack creation in progress 
+- Stack creation in progress 
 
-Stack created 
+- Stack created 
 
  
 ## STEP 2:
 
 ### S3 BUCKET 
 
-Create S3 bucket named "frontend-static-website". This bucket's URL must be specified in the backend API CORS configuration for allowed origins. And later in bucket's own CORS configuration. Choose appropriate region as well as allow public access 
+- Create S3 bucket named "frontend-static-website". This bucket's URL must be specified in the backend API CORS configuration for allowed origins. And later in bucket's own CORS configuration. Choose appropriate region as well as allow public access 
 
-Enable Static website hosting on this bucket 
+- Enable Static website hosting on this bucket 
 
-Check Enable, Host Static Website. And specify index.html as index document 
+- Check Enable, Host Static Website. And specify index.html as index document 
  
 
-### EDIT BUCKET POLICY:  
+### EDIT BUCKET POLICY: 
+
 use the following code. Make sure the bucket name is correctly specified and save 
 
  
-
+```
 { 
 "Version": "2012-10-17", 
 "Statement": [ 
@@ -82,7 +83,8 @@ use the following code. Make sure the bucket name is correctly specified and sav
 "Resource": "arn:aws:s3:::items-frontend-static-hosting/*" } 
 ] 
 
-} 
+}
+```
 
  
 
@@ -90,6 +92,7 @@ use the following code. Make sure the bucket name is correctly specified and sav
 
 Use the following code and save: 
 
+```
 [ 
 { "AllowedHeaders": [ "*" ], 
 "AllowedMethods": [ "GET" ], 
@@ -99,7 +102,8 @@ Use the following code and save:
 
 } 
 
-] 
+]
+```
 
  
 
@@ -127,6 +131,7 @@ New integration is ready. Note integration ID
 
 Now need to create 6 routes: 
  /Items (OPTIONS, GET, PUT) and /items/{id} (OPTIONS, DELETE, GET) 
+ 
  ```
 GET /items 
 PUT /items 
