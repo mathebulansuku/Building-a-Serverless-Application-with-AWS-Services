@@ -6,11 +6,22 @@ We will start by creating a static website on S3, which will contain a form for 
 
 We will use CloudFormation to deploy the HTTP API, Lambda Function and DynamoDB using code. 
 
+
+## Prerequisites
+
+- An active AWS account
+- An index.hmt, css, and JS file
+
  
 
 ### SERVICES INCLUDE: 
 
-Amazon S3, HTTP API Gateway, AWS Lambda, Simple Queue Service (SQS), DynamoDB, CloudFormation to deploy 
+- Amazon S3
+- HTTP API Gateway
+- AWS Lambda
+- Simple Queue Service (SQS) 
+- DynamoDB
+- CloudFormation to deploy 
 
  
 
@@ -18,7 +29,7 @@ Amazon S3, HTTP API Gateway, AWS Lambda, Simple Queue Service (SQS), DynamoDB, C
 
 ## STEP 1:
 
-### CLOUDFORMATION STACK 
+### CREATE A CLOUDFORMATION STACK 
 
  
 
@@ -76,6 +87,7 @@ use the following code. Make sure the bucket name is correctly specified and sav
  
 
 ### EDIT BUCKET CORS CONFIGURATION. 
+
 Use the following code and save: 
 
 [ 
@@ -115,13 +127,14 @@ New integration is ready. Note integration ID
 
 Now need to create 6 routes: 
  /Items (OPTIONS, GET, PUT) and /items/{id} (OPTIONS, DELETE, GET) 
- 
+ ```
 GET /items 
 PUT /items 
 GET /items/{id} 
 DELETE(/items/{id} 
 OPTIONS /items 
-OPTIONS /items/{id} 
+OPTIONS /items/{id}
+```
  
 
 Attach the NEW integration to the Lambda function to each of the 6 routes. Click Route. Then click Attach integration. 
@@ -133,7 +146,7 @@ Repeat for all 6 routes
 
 CONFIGURE CORS. All 6 fields should be configured: 
  
-The bucket URL (for N.Virgina buckets) should be in this format: https://frontend-website.s3.amazonaws.com/" 
+The bucket URL (for N.Virgina buckets) should be in this format: `https://frontend-website.s3.amazonaws.com/` 
  
 Access-Control-Allow-Origin" must be specified as the S3 bucket URL specified above. 
 All the other options just add a * 
@@ -154,15 +167,15 @@ Copy your invoke URL: https://ez0j89x5v5.execute-api.us-east-1.amazonaws.com/Pro
 
  The invoke URL's applied must be configured in the frontend config (frontend path: client\src\config.ts) 
 
-For example, if invoke URL for API is "https://0zf6cghiv8.execute-api.us-east-1.amazonaws.com/prod" then the API ID is first part after "https://" i.e. 0zf6cghiv8 
+For example, if invoke URL for API is `https://0zf6cghiv8.execute-api.us-east-1.amazonaws.com/prod` then the API ID is first part after "https://" i.e. 0zf6cghiv8 
 
  
 
 ### FROM A COMMAND PROMPT 
 
-Go to client folder and install all dependencies by running **"npm install"** 
+Go to client folder and install all dependencies by running `npm install` 
 
-Now run **"npm run build"** to create a production build in "build" subfolder 
+Now run `npm run build` to create a production build in "build" subfolder 
 
 Upload the build subfolder content for the frontend client application into the bucket under Objects tab 
 
